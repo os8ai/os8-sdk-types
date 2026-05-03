@@ -1,0 +1,33 @@
+name: release
+
+# Phase 4 PR 4.9 — publishes @os8/sdk-types to npm on every git tag
+# matching v*. Requires NPM_TOKEN secret on the repo (manual setup).
+#
+# Cut a release:
+#   1. Bump version in package.json + add CHANGELOG entry.
+#   2. git commit -am "release vX.Y.Z" && git tag vX.Y.Z && git push --tags
+#   3. This workflow runs `npm publish --access public --provenance`.
+#
+# --provenance ties npm publishes to the GitHub Actions run for
+# supply-chain transparency.
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write   # required for --provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

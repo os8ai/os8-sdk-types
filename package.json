@@ -1,0 +1,27 @@
+{
+  "name": "@os8/sdk-types",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for the OS8 window.os8 SDK exposed to apps installed via the OS8 App Store.",
+  "types": "./index.d.ts",
+  "files": [
+    "index.d.ts",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "keywords": [
+    "os8",
+    "typescript",
+    "types",
+    "sdk"
+  ],
+  "homepage": "https://os8.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/os8ai/os8-sdk-types.git"
+  },
+  "license": "MIT",
+  "author": "OS8 (https://os8.ai)",
+  "publishConfig": {
+    "access": "public"
+  }
+}
